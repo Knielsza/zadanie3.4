@@ -15,13 +15,15 @@ moment = Moment(app)
 app.config['SECRET_KEY'] = 'ghjk5678$%^&*FGHJ^&*(ghj678%^&*'
 date = datetime.now()
 
+connection = sqlite3.connect('data/source')
+cursor = connection.cursor()
+cursor.execute(f"SELECT * FROM salary")
+salary = cursor.fetchall()
+connection.close()
 @app.route('/')
 def index():
-    connection = sqlite3.connect('data/source')
-    cursor = connection.cursor()
-    salary = cursor.fetchall()
-    connection.close()
-    return render_template('index.html', title='Home', data=salary,)
+
+    return render_template('index.html', title='Home', data=salary)
 
 
 if __name__ == '__main__':

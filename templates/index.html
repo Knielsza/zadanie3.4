@@ -42,6 +42,13 @@
                     </tr>
 
                 </thead>
+                {% for person in data %}
+                    <tr>
+                        {% for el in person %}
+                            <td>{{ el }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
